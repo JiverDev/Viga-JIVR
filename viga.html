@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <!-- para que todos los navegadores lean en UTF-8 -->
+        <meta charset="UTF-8">
+        <!-- para que se adapte a dispositivos moviles -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <title>Super Beam</title>
+        <!-- conecta el archivo de estilos de css llamado style, con este -->
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="styles.css">
+        <script src="scritp.js"></script>
+        
+        <!-- trae un formato de tipo de texto de google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&display=swap" rel="stylesheet">
+    </head>
+  
+<body>
+  <header>
+    <div class="caja">
+        <h1 class="logo"><img src="img/logonegro.png" alt="logo"></h1>
+        <nav>
+            <ul>
+              <li><a href="index.html"> Home</li></a>
+              <li><a href="viga.html"> Viga</li></a>
+              <li><a href="contacto.html"> Contacto</li></a>
+            </ul>
+        </nav>
+    </div>   
+  </header>
+
+  <main>
+    <section class="titulo">
+      <h1>Resolución de Vigas Indeterminadas</h1>
+    </section>
+  
+     <section id="dibujar-viga">
+        <h2>Dibujar Viga</h2>
+        <p>Para resolver una viga indeterminada, lo primero que hay que hacer es dibujar la viga. Se puede hacer a mano o utilizando un programa de dibujo asistido por ordenador (CAD).</p>
+        <form>
+          <label for="longitud">Longitud de la viga:</label>
+          <input type="number" id="longitud" name="longitud" value="6"><br>
+        
+          <label for="carga-puntual">Carga puntual:</label>
+          <input type="number" id="carga-puntual" name="carga-puntual" min="0" required placeholder="valor en kN">
+          <input type="number" id="posicion-carga-puntual" name="posicion-carga-puntual" min="0" required placeholder="Úbicada a # m"><br>
+        
+          <label for="carga-distribuida">Carga distribuida:</label>
+          <input type="number" id="x1cd" name="carga-distribuida" min="0" required placeholder="Inicia  en kN">
+          <input type="number" id="y1cd" name="separacion-cargas" min="0" required placeholder="hasta # kN/m"><br>
+          <input type="number" id="x2cd" name="carga-distribuida" min="0" required placeholder="Termina en kN">
+          <input type="number" id="y2cd" name="separacion-cargas" min="0" required placeholder="hasta # kN/m"><br>
+        
+          <label for="Apoyo">Apoyo:</label>
+          <input type="number" id="posicion-apoyo" name="posicion-apoyo" min="0" required placeholder="Úbicado a # m"><br>          
+          <fieldset>
+            <legend>¿Que tipo de apoyo deseas agregar?</legend>
+            <select name="" id="">
+                <option value="">Apoyo simple</option>
+                <option value="">Rodillo</option>
+            </select>
+          </fieldset>
+
+          
+
+
+          <label for="momento">Momento:</label>
+          <input type="number" id="momento" name="momento" min="0" required placeholder="valor en kN.m">
+          <input type="number" id="posicion-momento" name="posicion-momento" min="0" required placeholder="Ubicada a # m"><br>
+        
+          <button type="button" onclick="dibujarviga()">Dibujar viga</button>
+        </form>
+        <img src="img/ejemplovijajivr.png" alt="Viga Dibujada">
+        
+        <div class="canvas">
+          <canvas id="miCanvas" width="600px" height="400"></canvas>
+          <script src="scritp.js"></script>
+        </div>
+
+      </section>
+      <section id="avaluo-cargas">
+        <h2>Avalúo de Cargas</h2>
+        <p>Es importante conocer las cargas que actúan sobre la viga para poder calcular las reacciones y los momentos en los apoyos. Las cargas pueden ser de dos tipos: carga viva y carga muerta.</p>
+        <ul>
+          <li>Carga Viva: 10 kN/m</li>
+          <li>Carga Muerta: 15 kN/m</li>
+          <li>Separación entre Viguetas: 2.5 m</li>
+        </ul>
+      </section>
+      <section id="carga-concentrada">
+        <h2>Carga Concentrada</h2>
+        <p>A veces, la viga puede tener una carga concentrada en un punto específico. En este caso, se debe considerar como una carga adicional en la viga y calcular su efecto en los momentos y las reacciones.</p>
+        <ul>
+          <li>Carga Concentrada: 5 kN</li>
+          <li>Posición de la carga concentrada: 4 m desde el apoyo izquierdo</li>
+        </ul>
+      </section>
+      <section id="diagrama-cuerpo-libre">
+        <h2>Diagrama de Cuerpo Libre</h2>
+        <p>El diagrama de cuerpo libre es una herramienta útil para visualizar las fuerzas que actúan sobre la viga. Se debe dibujar una línea que represente la viga y añadir las fuerzas que actúan sobre ella.</p>
+        <img src="diagrama-cuerpo-libre.jpg" alt="Diagrama de Cuerpo Libre">
+      </section>
+      <section id="condiciones-apoyos">
+        <h2>Condiciones en los Apoyos</h2>
+        <p>Las condiciones en los apoyos pueden afectar el comportamiento de la viga. Es importante conocer la flecha y la rotación en los apoyos para poder calcular las reacciones y los momentos.</p>
+        <ul>
+          <li>Flecha en el Apoyo Izquierdo: 5 cm</li>
+          <li>Flecha en el Apoyo Derecho: 2 cm</li>
+          <li>Rotación en el Apoyo Izquierdo: 0.02 rad</li>
+          <li>Rotación en el Apoyo Derecho: 0.01 rad</li>
+        </ul>
+      </section>
+      <section id="grado-indeterminacion">
+        <h2>Grado de Indeterminación</h2>
+        <p>El grado de indeterminación de una viga se refiere a la cantidad de ecuaciones necesarias para resolver la viga. La fórmula para calcular el grado de indeterminación es:</p>
+        <p>Grado de Indeterminación = Número de Incógnitas - Número de Ecuaciones</p>
+        <p>En este caso, el grado de indeterminación es 2 ya que hay 4 incógnitas (2 reacciones y 2 momentos) y solo 2 ecuaciones de equilibrio.</p>
+      </section>
+      <section id="ecuaciones-equilibrio">
+        <h2>Ecuaciones de Equilibrio</h2>
+        <p>Para resolver la viga, se deben escribir las ecuaciones de equilibrio en los puntos de interés. En este caso, se escriben dos ecuaciones de equilibrio en los puntos A y B:</p>
+        <p>ΣF<sub>y</sub> = 0:</p>
+        <p>R<sub>A</sub> + R<sub>B</sub> - 10 - 15 = 0</p>
+        <p>ΣM<sub>A</sub> = 0:</p>
+        <p>-5R<sub>A</sub> - 20 + 15(2.5) + 5 = 0</p>
+      </section>
+      <section id="ecuaciones-compatibilidad">
+        <h2>Ecuaciones de Compatibilidad</h2>
+        <p>Las ecuaciones de compatibilidad se utilizan para garantizar que la viga sea continua y cumpla con las condiciones de equilibrio en cada punto.</p>
+        <p>En este caso, se escriben dos ecuaciones de compatibilidad:</p>
+        <p>Δ<sub>A</sub> = 5</p>
+        <p>θ<sub>A</sub> = 0.02</p>
+      </section>
+      <section id="matriz-cuadrada">
+        <h2>Crear Matriz Cuadrada</h2>
+        <p>Las ecuaciones de equilibrio y compatibilidad se pueden escribir en forma matricial:</p>
+        <p>[1 1 0 0][R<sub>A</sub></p>
+        <p>          R<sub>B</sub></p>
+        <p>          M<sub>A</sub></p>
+        <p>          M<sub>B</sub>]</p>
+        <p>=</p>
+        <p>[25</p>
+        <p>    -5]</p>
+        <p>Para resolver la matriz, se pueden utilizar métodos de álgebra lineal como la eliminación gaussiana.</p>
+      </section>
+      <section id="reacciones">
+        <h2>Resolver Matriz y Obtener las Reacciones</h2>
+        <p>Resolviendo la matriz, se obtienen las siguientes reacciones:</p>
+        <ul>
+          <li>R<sub>A</sub> = 17.5 kN</li>
+          <li>R<sub>B</sub> = 7.5 kN</li>
+        </ul>
+      </section>
+      <section id="momentos-maximos">
+      <h2>Obtener Momentos Máximos</h2>
+      <p>Para obtener los momentos máximos en la viga, se deben analizar los diferentes tramos de la viga y determinar los puntos donde ocurren los momentos máximos. En este caso, se pueden identificar dos tramos:</p>
+      <ul>
+      <li>Tramo AB: El momento máximo ocurre en el punto A y es igual a 20 kN·m.</li>
+      <li>Tramo BC: El momento máximo ocurre en el punto C y es igual a 15 kN·m.</li>
+      </ul>
+      </section>
+      <section id="graficas">
+      <h2>Graficar Esfuerzo Cortante y Momento Flector</h2>
+      <p>Finalmente, se pueden graficar el esfuerzo cortante y el momento flector de la viga utilizando software de cálculo estructural como SAP2000 o utilizando programas de gráficos como Excel.</p>
+      <p>A continuación, se muestra un ejemplo de gráfica del esfuerzo cortante y el momento flector de la viga:</p>
+      <img src="algunaimagen.png" alt="Ejemplo de gráfica de esfuerzo cortante y momento flector">
+      </section>
+
+
+
+
+          
+  
+  
+</main>
+  
+<footer>
+  <img class="lastpart" src="img/logoblanco.png" alt="iconic Barber log">
+  «<!––«, Para los caracteres especiales se busca y se coloca el que diga "entidad" copyright : &copy, «––>«.
+  <p class="lastpart">&copy, Si llegaste hasta acá, preguntame lo que quieras en la sección de contacto!</p>     
+</footer>
+  
+</body>
+</html>

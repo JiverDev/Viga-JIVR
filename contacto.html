@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Contacto</title>
+
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="styles.css">
+
+        <!-- trae un formato de tipo de texto de google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&display=swap" rel="stylesheet">
+    </head>
+
+
+    <body>
+        
+        <!-- Encabezado -->
+        <header>
+            <div class="caja">
+                <h1 class="logo"><img src="img/logonegro.png" alt="logo de la barberia"></h1>
+                <nav>
+                    <ul>
+                        <li><a href="index.html"> Home</li></a>
+                        <li><a href="viga.html"> Viga</li></a>
+                        <li><a href="contacto.html"> Contacto</li></a>
+                    </ul>
+                  </nav>
+            </div>
+            
+        </header>
+
+        <!-- Cuerpo -->
+        <main>
+            <form class="formulariodecontacto">
+
+                <label for="nombreapellido">Nombre y apellido</label>
+                <input type="text" id="nombreapellido" class="input-padron" required >
+                
+                <!-- placeholder="texto que desea que este por defecto" -->
+                <label for="correo">Correo electronico</label>
+                <input type="email" id="correo" class="input-padron" required placeholder="email@donimio.com">
+
+                <!-- required : hace que el input sea obligatorio -->
+                <label for="telefono">Número Celular</label>
+                <input type="tel" id="telefono" class="input-padron" required placeholder="(xx) + xxxxxxxxxx">
+
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje " class="input-padron" cols="70" rows="10" required></textarea>
+                
+                <fieldset>
+                    <legend>¿Cómo prefieres que te contactemos?</legend>
+
+                    <label for="radio-email"><input type="radio" name="contacto" value="email" id="radio-email">Email</label>
+                    
+                    <label for="radio-telefono"><input type="radio" name="contacto" value="telefono" id="radio-telefono">Telefono</label>
+                    
+                    <label for="radio-whatsapp"><input type="radio" name="contacto" value="whatsapp" id="radio-whatsapp" checked>WhatsApp</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>¿En cúal horario prefiere ser atendido?</legend>
+                    <select name="" id="">
+                        <option value="">Mañana</option>
+                        <option value="">Tarde</option>
+                        <option value="">Noche</option>
+                    </select>
+                </fieldset>
+
+                <label for="" class="checkbox"><input type="checkbox" checked>¿Le gustaria recibir novedades de JIVR?</label>
+                
+                <input type="submit" value="Enviar formulario" class="enviar">
+            </form>
+
+            <img class="imgfinal" src="img/logorojo.png" alt="Imagen barberia IA">
+
+            <table>
+
+                <label class="atentiontime">Horario de atención</label>
+                <thead>
+                    <!-- <tr> = filas,  <td> Celda</td> en la fila(tr) Ejem: 2 (td) se comportarian como 2 columnas -->
+                    <tr>
+                        <th>Día</th>
+                        <th>Horario</th>
+                    </tr>
+                </thead>
+
+                
+                <tbody>
+                    <tr>
+                        <td>Disponible</td>
+                        <td>24/7</td>
+                    </tr>
+                    <tr>
+                        <td>Available</td>
+                        <td>Fulltime</td>
+                    </tr>
+                    <tr>
+                        <td>Viernes</td>
+                        <td>08:00am - 10:00pm</td>
+                    </tr>
+                </tbody>     
+            </table>
+
+            <div class="whatsapp">
+                <p>Haz clic en el icono de <strong>WhatsApp</strong> y contactanos:</p>
+            <a href="https://api.whatsapp.com/send?phone=+573214669234&text=Hola%2C%20quiero%20hacer%20una%20reserva" target="Hola, Quiero contactarme contigo, ¿puedes hablar ahora?">
+            <img id="imgwhatsap" src="img/whatsapp.png" alt="WhatsApp">
+            </a>
+            </div>
+            
+
+        </main>
+
+
+        <!-- Pie de pagina -->
+        <footer>
+            <img src="img/logoblanco.png" alt="iconic Barber log">
+            «<!––«, Para los caracteres especiales se busca y se coloca el que diga "entidad" copyright : &copy, «––>«.
+            <p class="lastpart">&copy, Si llegaste hasta acá, preguntame lo que quieras en la sección de contacto!</p>
+        </footer>
+        
+        </body>
+    </html>
+
+   
